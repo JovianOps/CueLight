@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cuelight"
+version = "0.1.0"
+description = "An always-listening turn detector for voice agents, with streaming end-of-turn detection on every 20 ms of audio."
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.1", "numpy", "safetensors>=0.4", "huggingface_hub>=0.20"]
+
+[project.optional-dependencies]
+examples = ["soundfile", "sounddevice"]
+eval = ["pandas", "pyarrow", "soundfile", "scikit-learn", "onnxruntime", "transformers"]
+dev = ["pytest"]
+
+[tool.setuptools]
+packages = ["cuelight"]

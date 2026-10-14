@@ -1,0 +1,37 @@
+CueLight
+Copyright 2026 sshah03
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+CueLight's models were trained on, and build on, the third-party work below. Each is used under its own license.
+Where weights or data were changed (fine-tuned, re-segmented, relabeled or used for training), that's noted.
+
+Model weights
+
+- CueLight-Base is fine-tuned from the encoder of OpenAI's Whisper small.en
+  (https://huggingface.co/openai/whisper-small.en), released under the Apache License 2.0. The encoder was modified
+  (made causal) and fine-tuned. Whisper's code is Copyright (c) 2022 OpenAI, under the MIT License
+  (LICENSES/whisper-MIT.txt).
+- Whisper base.en and medium.en (OpenAI, Apache-2.0 weights and MIT code) were used as teachers during training.
+- Smart Turn v3.2 (https://github.com/pipecat-ai/smart-turn), Copyright (c) 2024-2025, Daily, under the BSD 2-Clause
+  License (LICENSES/smart-turn-BSD-2-Clause.txt). No Smart Turn code is included here.
+
+Training data (Creative Commons Attribution, used for training after re-segmenting and relabeling)
+
+- Smart Turn v3.2 training data, pipecat-ai/smart-turn-data-v3.2-train, CC BY 4.0, by Pipecat / Daily, with audio
+  contributed by Liva AI, Midcentury and MundoAI.
+  https://huggingface.co/datasets/pipecat-ai/smart-turn-data-v3.2-train
+- The People's Speech (clean and dirty subsets), MLCommons, CC BY. Galvez et al., "The People's Speech: A Large-Scale
+  Diverse English Speech Recognition Dataset for Commercial Usage", 2021.
+  https://huggingface.co/datasets/MLCommons/peoples_speech
+- Harper Valley Bank, Gridspace and Stanford University, CC BY 4.0.
+  https://github.com/cricketclub/gridspace-stanford-harper-valley
+- Open Yap 1K sample, The Agentic Data Company, CC BY 4.0.
+  https://huggingface.co/datasets/TheAgenticDataCompany/open-yap-1k
+- eot-bench data, LiveKit, CC BY 4.0, used to choose between models and for evaluation.
+  https://huggingface.co/datasets/livekit/eot-bench-data
+
+Conditions passed on from the data: please don't use CueLight, or audio processed with it, to identify speakers or to
+clone voices.
+
+License texts: https://creativecommons.org/licenses/by/4.0/, LICENSE (Apache-2.0) and the files in LICENSES/.
