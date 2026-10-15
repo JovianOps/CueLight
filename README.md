@@ -36,6 +36,7 @@ the same interface, so switching between them is one argument. However, it is si
 | --- | ---: | ---: | --- | --- |
 | **CueLight-Base** | 88M | 336 MB | 5.0 ms per 20 ms of audio | servers and desktops, where you want the most accurate model |
 | **CueLight-Nano** | 0.5M | 1.9 MB | 0.5 ms per 20 ms of audio | phones, wearables and embedded devices, always on at almost no cost |
+| CueLight-Nano 8-bit (ONNX) | 0.5M | 1.5 MB | about the same as Nano | the same model at a smaller download size |
 | CueLight-Nano-SSM (experimental) | 0.5M | 1.9 MB | 0.7 ms per 20 ms of audio | Nano with a Mamba-3 core instead of a GRU, for comparison |
 
 CPU cost was measured on an Apple M4 Pro (MacBook Pro) with fp32 weights on one thread, feature extraction included.
@@ -187,7 +188,11 @@ runs at pauses. If cost matters most, use Nano.
 
 Only Nano and Nano-SSM have been exported to ONNX so far. Each file in `docs/models/` is one streaming step (20 ms of
 audio and the state go in, the probabilities and the new state come out), and that's what the browser demo runs.
-There's no int8 version yet.
+
+Nano also comes in an 8-bit version (`docs/models/cuelight-nano-int8.onnx`, 1.5 MB, with the model's own weights at
+about 0.5 MB). On eot-bench it waits 1004 and 746 ms at 5% and 10% cut-offs, against 990 and 751 ms for the full
+precision Nano, so it's essentially the same model. It's smaller, but not faster, and it's ONNX only for now, so the Python
+package still uses the full precision weights.
 
 ## License and credits
 

@@ -8,9 +8,9 @@ const HOP_S = FRAME / 16000;
 const RESET = { minSilenceS: 2.0, onsetFrames: 3, lookbackS: 0.3, speechThr: 0.5 };
 
 export class CueLight {
-  // name is "cuelight-nano" or "cuelight-nano-ssm". Reads models/<name>.json (state shapes and presets) and the ONNX file.
+  // name is "cuelight-nano", "cuelight-nano-int8" or "cuelight-nano-ssm". Reads models/<name>.json (state shapes and presets) and the ONNX file.
   static async load(name, base = "models/") {
-    const v = "?v=4"; // bump with each model / page update so browsers never mix old and new files
+    const v = "?v=5"; // bump with each model / page update so browsers never mix old and new files
     const meta = await (await fetch(`${base}${name}.json${v}`)).json();
     const session = await ort.InferenceSession.create(base + meta.model.split("/").pop() + v, { executionProviders: ["wasm"] });
     return new CueLight(session, meta);

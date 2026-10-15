@@ -1,0 +1,43 @@
+{
+ "model": "models/cuelight-nano-int8.onnx",
+ "states": {
+  "fe_state": [
+   1,
+   240
+  ],
+  "s0": [
+   1,
+   128,
+   2
+  ],
+  "s1": [
+   1,
+   112,
+   2
+  ],
+  "s2": [
+   1,
+   112
+  ],
+  "s3": [
+   1,
+   112
+  ],
+  "s4": [
+   1,
+   112
+  ]
+ },
+ "presets": {
+  "careful": {
+   "threshold": 0.76,
+   "minSilenceS": 0.7,
+   "timeoutS": 2.0
+  },
+  "snappy": {
+   "threshold": 0.73,
+   "minSilenceS": 0.5,
+   "timeoutS": 1.5
+  }
+ }
+}

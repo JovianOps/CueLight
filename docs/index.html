@@ -49,7 +49,8 @@
 <main>
   <h1>CueLight</h1>
   <p class="sub">An always-listening turn detector. This page runs <b>CueLight-Nano</b> (0.5M parameters, under 3 MB)
-    entirely in your browser so no audio leaves your device.</p>
+    entirely in your browser so no audio leaves your device. Code, weights, and benchmarks are available at
+    <a href="https://github.com/sshah03/CueLight">github.com/sshah03/CueLight</a>.</p>
 
   <div class="card">
     <div class="row">
@@ -57,6 +58,7 @@
       <label>Model
         <select id="model">
           <option value="cuelight-nano">Nano (GRU)</option>
+          <option value="cuelight-nano-int8">Nano 8-bit (GRU)</option>
           <option value="cuelight-nano-ssm">Nano-SSM (Mamba-3, experimental)</option>
         </select>
       </label>
@@ -93,14 +95,11 @@
   <p class="small">
     Try the hard case: say "I'd like to book a table for, um…" and pause.
   </p>
-  <p class="small">
-    Code, weights and benchmarks: <a href="https://github.com/sshah03/CueLight">github.com/sshah03/CueLight</a>.
-  </p>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort.min.js"></script>
 <script type="module">
-import { CueLight } from "./cuelight.js?v=4";
+import { CueLight } from "./cuelight.js?v=5";
 
 ort.env.wasm.wasmPaths = "https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/";
 ort.env.wasm.numThreads = 1; // GitHub Pages can't enable cross-origin isolation; Nano doesn't need threads
@@ -179,7 +178,7 @@ $("mic").onclick = async () => {
     stream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: false, autoGainControl: true } });
   } catch (e) { $("status").textContent = "The page needs microphone access to work."; return; }
   ctx = new AudioContext();
-  await ctx.audioWorklet.addModule("worklet.js?v=4");
+  await ctx.audioWorklet.addModule("worklet.js?v=5");
   node = new AudioWorkletNode(ctx, "to16k");
   node.port.onmessage = (ev) => onChunk(ev.data);
   ctx.createMediaStreamSource(stream).connect(node);
